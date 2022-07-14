@@ -12,6 +12,10 @@ export const TestNavigator: React.FC = () => {
       {ids.map((id) => {
         return (<TestLink key={"static-paths-"+id} page="static-paths" id={id} />)
       })}
+
+      {ids.map((id) => {
+        return (<TestLink key={"static-paths-en"+id} page="static-paths-en" id={id} />)
+      })}
     </div>
   )
 }

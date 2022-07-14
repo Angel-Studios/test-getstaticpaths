@@ -3,11 +3,15 @@ import type { NextRequest } from 'next/server'
 import locales from '@/constants/locales'
 
 function isPublicLocale(locale: string) {
+  console.log('isPublicLocale', { locale })
+
   return !!locales.public.find((publicLocale) => publicLocale === locale)
 }
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
+  console.log("url", { url: request.url })
+
   const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
 
   if (!enableBetaLanguages && !isPublicLocale(request.nextUrl.locale)) {

@@ -17,6 +17,8 @@ const PUBLIC_FILE = /\.(.*)$/
 export function middleware(request: NextRequest) {
   const locale = request.nextUrl.locale
 
+  if (locale === 'en') return
+
   console.log('in the middleware', { locale })
 
   const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')

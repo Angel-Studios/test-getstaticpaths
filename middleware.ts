@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+// import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import locales from '@/constants/locales'
 
@@ -12,26 +12,27 @@ function isPublicLocale(locale: string) {
   return isPublicLocale
 }
 
-const PUBLIC_FILE = /\.(.*)$/
+// const PUBLIC_FILE = /\.(.*)$/
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
-  const validRequestedLocale = enableBetaLanguages || isPublicLocale(request.nextUrl.locale)
+  // const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
+  // const validRequestedLocale = enableBetaLanguages || isPublicLocale(request.nextUrl.locale)
+  //
+  // if ( request.nextUrl.pathname.startsWith('/_next') ||
+  //     request.nextUrl.pathname.includes('/api/') ||
+  //     PUBLIC_FILE.test(request.nextUrl.pathname) ||
+  //     validRequestedLocale ) {
+  //
+  //   console.log('exiting the middleware...')
+  //
+  //   return
+  //
+  // } else {
+  //   const rewrite = new URL(request.nextUrl.pathname, request.url)
+  //   console.error("CAUSING A REWRITE!", { locale: request.nextUrl.locale, url: request.url, rewrite })
+  //
+  //   return NextResponse.rewrite(rewrite)
+  // }
 
-  if ( request.nextUrl.pathname.startsWith('/_next') ||
-      request.nextUrl.pathname.includes('/api/') ||
-      PUBLIC_FILE.test(request.nextUrl.pathname) ||
-      validRequestedLocale ) {
-
-    console.log('exiting the middleware...')
-
-    return
-
-  } else {
-    const rewrite = new URL(request.nextUrl.pathname, request.url)
-    console.error("CAUSING A REWRITE!", { locale: request.nextUrl.locale, url: request.url, rewrite })
-
-    return NextResponse.rewrite(rewrite)
-  }
+  return
 }

@@ -36,3 +36,7 @@ export function middleware(request: NextRequest) {
 
   return
 }
+
+export const config = {
+  matcher: ['/static-paths', '/empty-static-paths'],
+}

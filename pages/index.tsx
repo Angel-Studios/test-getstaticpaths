@@ -1,5 +1,5 @@
-import { TestNavigator } from '../../src/components/TestNavigator'
+import { TestNavigator } from '@/components/TestNavigator'
 
 export default function Index() {
-  return <TestNavigator basePath="/test" />
+  return <TestNavigator />
 }

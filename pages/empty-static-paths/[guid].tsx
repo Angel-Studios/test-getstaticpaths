@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { TestNavigator } from '../../../src/components/TestNavigator'
+import { TestNavigator } from '@/components/TestNavigator'
 
 interface TestProps {
   myId: string
@@ -7,13 +7,12 @@ interface TestProps {
 
 export const Test: NextPage<TestProps> = ({ myId }) => {
   return (
-    <>
-      <TestNavigator basePath="/test" />
-      <div className="my-12 mx-12 bg-red">
-        <h1>EMPTY STATIC PATHS</h1>
-        {myId}
-      </div>
-    </>
+      <>
+        <TestNavigator basePath="/test" />
+        <div style={{ margin: "1.5rem", textAlign: "center", width: "100%" }}>
+          <h1>With Static Paths: {myId}</h1>
+        </div>
+      </>
   )
 }
 

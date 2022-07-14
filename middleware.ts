@@ -30,7 +30,7 @@ export function middleware(request: NextRequest) {
 
   } else {
     const rewrite = new URL(request.nextUrl.pathname, request.url)
-    console.log("CAUSING A REWRITE!", { rewrite })
+    console.error("CAUSING A REWRITE!", { locale: request.nextUrl.locale, url: request.url, rewrite })
 
     return NextResponse.rewrite(rewrite)
   }

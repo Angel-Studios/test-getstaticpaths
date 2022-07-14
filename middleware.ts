@@ -15,6 +15,8 @@ function isPublicLocale(locale: string) {
 const PUBLIC_FILE = /\.(.*)$/
 
 export function middleware(request: NextRequest) {
+  console.log('in the middleware')
+
   const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
   const validRequestedLocale = enableBetaLanguages || isPublicLocale(request.nextUrl.locale)
 
@@ -35,7 +37,7 @@ export function middleware(request: NextRequest) {
   }
 }
 
-const pathsWeCareAbout = ['/static-paths', '/empty-static-paths']
+const pathsWeCareAbout = ['static-paths', 'empty-static-paths']
 
 function buildMatcher() {
   const matcher = [] as string[]
@@ -46,6 +48,8 @@ function buildMatcher() {
       ...locales.alpha.map((locale) => `/${locale}/${path}/:path*`),
     )
   })
+
+  console.log(matcher)
 
   return matcher
 }

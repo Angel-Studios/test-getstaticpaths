@@ -19,10 +19,13 @@ export function middleware(request: NextRequest) {
   const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
 
   if (!enableBetaLanguages && !isPublicLocale(request.nextUrl.locale)) {
-    return NextResponse.rewrite(new URL(request.nextUrl.pathname, request.url))
+    const rewrite = new URL(request.nextUrl.pathname, request.url)
+    console.log("CAUSING A REWRITE!", { rewrite })
+
+    return NextResponse.rewrite(rewrite)
   }
 
-  return undefined
+  return NextResponse.next()
 }
 
 // See "Matching Paths" below to learn more

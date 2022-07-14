@@ -1,0 +1,4 @@
+{
+  "withoutStaticProps": "Without Static Paths",
+  "withStaticPaths": "With Static Paths"
+}

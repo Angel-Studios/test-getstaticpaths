@@ -3,9 +3,13 @@ import type { NextRequest } from 'next/server'
 import locales from '@/constants/locales'
 
 function isPublicLocale(locale: string) {
-  console.log('isPublicLocale', { locale })
+  const isPublicLocale = !!locales.public.find((publicLocale) => publicLocale === locale)
 
-  return !!locales.public.find((publicLocale) => publicLocale === locale)
+  if (!isPublicLocale) {
+    console.log('isPublicLocale', { locale, isPublicLocale })
+  }
+
+  return isPublicLocale
 }
 
 // This function can be marked `async` if using `await` inside

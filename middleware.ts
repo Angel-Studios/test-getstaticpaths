@@ -16,32 +16,22 @@ const PUBLIC_FILE = /\.(.*)$/
 
 export function middleware(request: NextRequest) {
   const locale = request.nextUrl.locale
-
-  if (locale === 'en') return
+  const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
 
   console.log('in the middleware', { locale })
 
-  const enableBetaLanguages = !!request?.cookies.get('ANGEL_BETA_LANGUAGE')
-  const validRequestedLocale = enableBetaLanguages || isPublicLocale(request.nextUrl.locale)
-
-  if ( request.nextUrl.pathname.startsWith('/_next') ||
+  if (isPublicLocale(locale) ||
+      request.nextUrl.pathname.startsWith('/_next') ||
       request.nextUrl.pathname.includes('/api/') ||
       PUBLIC_FILE.test(request.nextUrl.pathname) ||
-      validRequestedLocale ) {
+      enableBetaLanguages) {
 
     console.log('exiting the middleware...')
-
     return
-
   } else {
     const rewrite = new URL(request.nextUrl.pathname, request.url)
     console.error("CAUSING A REWRITE!", { locale: request.nextUrl.locale, url: request.url, rewrite })
 
     return NextResponse.rewrite(rewrite)
   }
-}
-
-export const config = {
-  matcher: [ '/static-paths/:path*',
-    '/empty-static-paths/:path*' ],
 }

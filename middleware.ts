@@ -37,23 +37,13 @@ export function middleware(request: NextRequest) {
   }
 }
 
-const pathsWeCareAbout = ['static-paths', 'empty-static-paths']
-
-function buildMatcher() {
-  const matcher = [] as string[]
-
-  pathsWeCareAbout.forEach(path => {
-    matcher.push(
-      ...locales.beta.map((locale) => `/${locale}/${path}/:path*`),
-      ...locales.alpha.map((locale) => `/${locale}/${path}/:path*`),
-    )
-  })
-
-  console.log(matcher)
-
-  return matcher
-}
-
 export const config = {
-  matcher: buildMatcher(),
+  matcher: [ '/pt/static-paths/:path*',
+    '/es/static-paths/:path*',
+    '/de/static-paths/:path*',
+    '/fr/static-paths/:path*',
+    '/pt/empty-static-paths/:path*',
+    '/es/empty-static-paths/:path*',
+    '/de/empty-static-paths/:path*',
+    '/fr/empty-static-paths/:path*' ],
 }

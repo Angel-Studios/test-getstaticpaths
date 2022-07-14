@@ -8,7 +8,7 @@ interface TestProps {
 export const Test: NextPage<TestProps> = ({ myId }) => {
   return (
     <>
-      <TestNavigator basePath="/test" />
+      <TestNavigator />
       <div style={{ margin: "1.5rem", textAlign: "center", width: "100%" }}>
         <h1>With Static Paths: {myId}</h1>
       </div>

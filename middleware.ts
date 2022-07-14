@@ -38,12 +38,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [ '/pt/static-paths/:path*',
-    '/es/static-paths/:path*',
-    '/de/static-paths/:path*',
-    '/fr/static-paths/:path*',
-    '/pt/empty-static-paths/:path*',
-    '/es/empty-static-paths/:path*',
-    '/de/empty-static-paths/:path*',
-    '/fr/empty-static-paths/:path*' ],
+  matcher: [ '/static-paths/:path*',
+    '/empty-static-paths/:path*' ],
 }
